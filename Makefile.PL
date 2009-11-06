@@ -14,7 +14,7 @@ requires 'URI';
 requires 'parent';
 requires 'LWP';
 requires 'DateTime::Format::W3CDTF';
-reqiures 'IO::Socket::SSL';
+requires 'IO::Socket::SSL';
 
 recommends 'JSON::XS';
 
