@@ -36,6 +36,7 @@ has '_feed' => (
 				, published   => $entry->{published}{'$t'}
 				, updated     => $entry->{updated}{'$t'}
 				, id          => $entry->{id}{'$t'}
+				, content     => $entry->{content}{'$t'}
 				
 				, yt_videoid  => $entry->{'media$group'}{'yt$videoid'}
 				, yt_duration => $entry->{'media$group'}{'yt$duration'}{'seconds'}
@@ -77,6 +78,7 @@ sub BUILDARGS {
 		my $json = JSON::from_json( $resp->content );
 		
 		my $feed = $json->{feed};
+		use XXX; YYY $feed;
 
 		return {
 
