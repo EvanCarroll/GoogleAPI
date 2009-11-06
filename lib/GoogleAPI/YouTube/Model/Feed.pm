@@ -77,7 +77,6 @@ sub BUILDARGS {
 		my $json = JSON::from_json( $resp->content );
 		
 		my $feed = $json->{feed};
-		print $feed;
 
 		return {
 
