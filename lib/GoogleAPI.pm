@@ -15,19 +15,22 @@ Version 0.01
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+Has a basic (currently read-only) API into Google services (currently YouTube). I'm not sure if I like this API at all yet. This is very pre-release.
 
-Perhaps a little code snippet.
+	my $ua = GoogleAPI::UserAgent->new({
+		devkey     => $developerKey
+		, auth_email    => $username || $googleAccountEmail
+		, auth_password => $password
+	});
 
-    use GoogleAPI;
+	use GoogleAPI::YouTube::Feeds::User;
+	my $uri = GoogleAPI::YouTube::Feeds::User->new({ username => 'default' })->uri;
 
-    my $foo = GoogleAPI->new();
-    ...
+	use GoogleAPI::YouTube::Query;
+	my $uri = GoogleAPI::YouTube::Query->new({ author => 'EvanCarroll' })->uri;
 
-=head1 EXPORT
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+	my $f = GoogleAPI::YouTube::Model::Feed->new( $ua->get(YYY $uri) );
 
 =head1 AUTHOR
 
