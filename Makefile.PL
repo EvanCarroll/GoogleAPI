@@ -13,6 +13,7 @@ requires 'JSON';
 requires 'URI';
 requires 'parent';
 requires 'LWP';
+requires 'DateTime::Format::W3CDTF';
 
 recommends 'JSON::XS';
 
