@@ -36,6 +36,7 @@ has '_feed' => (
 				, published   => $entry->{published}{'$t'}
 				, updated     => $entry->{updated}{'$t'}
 				, id          => $entry->{id}{'$t'}
+				
 				, yt_videoid  => $entry->{'media$group'}{'yt$videoid'}
 				, yt_duration => $entry->{'media$group'}{'yt$duration'}{'seconds'}
 				, yt_uploaded => $entry->{'media$group'}{'yt$uploaded'}{'$t'}
@@ -44,7 +45,10 @@ has '_feed' => (
 				, media_credit      => $entry->{'media$group'}{'media$credit'}[0]{'$t'}
 				, media_description => $entry->{'media$group'}{'media$description'}{'$t'}
 				, media_keywords    => $entry->{'media$group'}{'media$keywords'}{'$t'}
-				, media_player      => $entry->{'media$group'}{'media$player'}{'url'}
+				
+				## XXX in author feed, this is an array, in query feed it is a single element
+				## http://code.google.com/p/gdata-issues/issues/detail?id=1597
+				## , media_player      => $entry->{'media$group'}{'media$player'}{'url'}
 			});
 		}
 
@@ -59,14 +63,22 @@ sub new_entry {
 
 sub BUILDARGS {
 	my $class = shift;
+
+	use JSON;
 	
 	## Sure, lets handle, json mapping here.
-	if ( @_ == 1 && ref $_[0] eq 'HASH' && exists $_[0]->{feed} ) {
-	
-		my $feed = $_[0]->{feed};
-
-		$feed = $feed->{feed} while exists $feed->{feed};
+	if (
+		@_ == 1
+		&& blessed $_[0] eq 'HTTP::Response'
+		&& $_[0]->header('Content-Type')
+	) {
+		my $resp = shift;
 		
+		my $json = JSON::from_json( $resp->content );
+		
+		my $feed = $json->{feed};
+		print $feed;
+
 		return {
 
 			_feed   => $feed
