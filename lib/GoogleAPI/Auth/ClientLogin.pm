@@ -1,43 +1,26 @@
 package GoogleAPI::Auth::ClientLogin;
-use namespace::autoclean;
 use strict;
 use warnings;
 
-use Moose;
+use Moose::Role;
 use URI;
 use LWP::UserAgent;
 
 with 'GoogleAPI::Auth::Roles::KeyRetriever';
 
-has [qw/email password/] => (
+has [qw/auth_email auth_password/] => (
 	isa  => 'Str'
 	, is => 'ro'
 	, required => 1
 );
 
-has 'uri' => (
-	isa  => 'URI'
-	, is => 'ro'
-	, init_arg => undef
-	, lazy_build => 1
-);
-
-has 'source' => (
-	isa => 'Str'
+has 'auth_source' => (
+	isa  => 'Str'
 	, is => 'ro'
 	, default => __PACKAGE__ . ' application'
 );
 
-has 'service' => (
-	isa  => 'Str'
-	, is => 'ro'
-	, lazy_build => 1
-	, init_arg => undef
-	, required => 1
-);
-
-
-__PACKAGE__->meta->make_immutable;
+1;
 
 __END__
 
@@ -47,13 +30,7 @@ GoogleAPI::Auth::ClientLogin
 
 =head1 SYNOPSIS
 
-my $auth = GoogleAPI::Auth::ClientLogin->new({
-	email => 'foo@bar.com'
-	, password => 'foobar'
-	, source => 'My application'
-});
-
-$auth->key;
+A role that gets composed into the GoogleAPI::UserAgent
 
 =head1 DESCRIPTION
 

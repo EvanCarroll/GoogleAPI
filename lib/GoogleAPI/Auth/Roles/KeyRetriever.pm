@@ -9,26 +9,20 @@ use LWP::UserAgent;
 
 #requires qw( email password source service );
 
-has 'ua' => (
-	isa  => 'LWP::UserAgent'
-	, is => 'ro'
-	, lazy => 1
-	, default => sub { LWP::UserAgent->new }
-);
-
-has 'key' => (
+has 'authkey' => (
 	isa  => 'Str'
 	, is => 'ro'
 	, lazy => 1
 	, default => sub {
 		my $self = shift;
-		my $resp = $self->ua->post(
-			$self->uri
+		my $ua = LWP::UserAgent->new;
+		my $resp = $ua->post(
+			$self->auth_uri
 			, [
-				Email => $self->email
-				, Passwd  => $self->password
-				, service => $self->service
-				, source  => $self->source
+				Email => $self->auth_email
+				, Passwd  => $self->auth_password
+				, service => $self->auth_service
+				, source  => $self->auth_source
 			]
 		);
 
