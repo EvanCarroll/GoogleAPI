@@ -20,6 +20,8 @@ has '_ua' => (
 		$value->add_handler( 'request_preprepare' => sub {
 			my ( $request, $ua, $h ) = @_;
 
+			$request->push_header( 'X-GData-Client' => 'Perl GoogleAPI v1' );
+
 			$request->push_header( 'X-GData-Key' => "key=".$self->devkey )
 				if $self->has_devkey
 			;
