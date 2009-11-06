@@ -13,11 +13,6 @@ enum 'ORDERBY' => qw( relevance published viewCount rating );
 enum 'SAFE_SEARCH' => qw( none moderate strict );
 
 ## For all API Requests
-	has 'key' => (
-		isa => 'Str'
-		, is => 'ro'
-		, required => 1
-	);
 	has 'client' => (
 		isa => 'Str'
 		, is => 'ro'
