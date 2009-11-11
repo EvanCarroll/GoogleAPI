@@ -38,7 +38,7 @@ Google::API::YouTube::Feeds->new({ user => 'EvanCarroll' })->uri;
 
 =head1 DESCRIPTION
 
-A YouTube user information object.
+A YouTube user information object. If no username is supplied it defaults to 'default', which will read from the authorization token.
 
 =head2 ATTRIBUTES
 
@@ -46,7 +46,7 @@ A YouTube user information object.
 
 =item
 
-username
+username - reads from the authorization token if not supplied
 
 =back
 
