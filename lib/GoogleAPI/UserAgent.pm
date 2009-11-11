@@ -71,3 +71,7 @@ devkey - your Google DATA developer key
 authkey - your Google Authorization key (currently obtained from ClientLogin)
 
 =back
+
+=head1 SEE ALSO
+
+L<GoogleAPI::Auth::ClientLogin::YouTube> - a role we include until we need to support more than just YouTube
