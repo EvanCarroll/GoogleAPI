@@ -10,7 +10,7 @@ extends 'GoogleAPI::YouTube::Model';
 
 has 'published' => ( isa => W3CDTF , is => 'ro', coerce => 1 );
 
-has 'content' => ( isa => 'Str', is => 'ro' );
+has 'content' => ( isa => 'Maybe[Str]', is => 'ro' );
 
 __PACKAGE__->meta->make_immutable;
 

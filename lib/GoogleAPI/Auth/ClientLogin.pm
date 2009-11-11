@@ -28,12 +28,18 @@ __END__
 
 GoogleAPI::Auth::ClientLogin
 
-=head1 SYNOPSIS
-
-A role that gets composed into the GoogleAPI::UserAgent
-
 =head1 DESCRIPTION
 
-Basic ClientLogin Authentication
+A role that currently composed into the GoogleAPI::UserAgent, requiring email, and password for authentication. It does this by adding requried attributes.
 
-=head1 AUTHOR
+=head2 ATTRIBUTES
+
+=over4
+
+=item auth_email (Not always an email address)
+
+=item auth_password
+
+=item auth_source  (NOT REQUIRED, defaults to 'GoogleAPI::Auth::ClientLogin application')
+
+=back

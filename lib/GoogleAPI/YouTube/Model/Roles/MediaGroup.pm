@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use namespace::autoclean;
 
-use Moose::Roleu
+use Moose::Role;
 use GoogleAPI::Types qw/W3CDTF/;
 
 has [qw/

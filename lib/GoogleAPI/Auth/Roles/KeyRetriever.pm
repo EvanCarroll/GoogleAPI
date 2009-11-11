@@ -37,3 +37,13 @@ has 'authkey' => (
 );
 
 1;
+
+__END__
+
+=head1 NAME
+
+GoogleAPI::Auth::Roles::KeyRetriever
+
+=head1 DESCRIPTION
+
+A L<Moose::Role> that provides an B<authkey> attribute and requires C<auth_email>, C<auth_password>, C<auth_service>, and C<auth_source>. It initiates a plain L<LWP::UserAgent> request and stores the C<authkey> for use in L<GoogleAPI::UserAgent>.

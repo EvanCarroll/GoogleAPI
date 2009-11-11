@@ -1,6 +1,7 @@
 package GoogleAPI::UserAgent;
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Moose;
 use LWP::UserAgent;
@@ -44,3 +45,29 @@ has '_ua' => (
 );
 
 1;
+
+__END__
+
+=head1 NAME
+
+GoogleAPI::UserAgent - A request-prepairing Google API user agent
+
+=head1 DESCRIPTION
+
+A subclass of L<LWP::UserAgent> for the purpose of interfacing with the Google Data REST API. GoogleAPI::UserAgent adds the HTTP headers I<X-GData-Client>, I<X-GData-Key>, and I<Authorization> to each request made.
+
+In addition, it I<currently> defaults the format to JSON, if not specified elsewhere.
+
+=head2 CONSTRUCTOR ARGUMENTS
+
+=over 12
+
+=item
+
+devkey - your Google DATA developer key
+
+=back
+
+authkey - your Google Authorization key (currently obtained from ClientLogin)
+
+=back

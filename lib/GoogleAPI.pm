@@ -23,12 +23,11 @@ Has a basic (currently read-only) API into Google services (currently YouTube). 
 		, auth_password => $password
 	});
 
-	use GoogleAPI::YouTube::Feeds::User;
-	my $uri = GoogleAPI::YouTube::Feeds::User->new({ username => 'default' })->uri;
+	use GoogleAPI::YouTube::Query::Feeds::User;
+	my $uri = GoogleAPI::YouTube::Query::Feeds::User->new({ username => 'default' })->uri;
 
-	use GoogleAPI::YouTube::Query;
-	my $uri = GoogleAPI::YouTube::Query->new({ author => 'EvanCarroll' })->uri;
-
+	use GoogleAPI::YouTube::Query::Custom;
+	my $uri = GoogleAPI::YouTube::Query::Custom->new({ author => 'EvanCarroll' })->uri;
 
 	my $f = GoogleAPI::YouTube::Model::Feed->new( $ua->get(YYY $uri) );
 
