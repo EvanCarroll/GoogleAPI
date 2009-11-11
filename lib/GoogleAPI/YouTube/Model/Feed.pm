@@ -22,6 +22,12 @@ has 'generator_content' => ( isa => 'Str', is => 'ro' );
 has 'generator_uri' => ( isa => 'Str', is => 'ro' );
 has 'generator_version' => ( isa => 'Str', is => 'ro' );
 
+has [qw/
+	opensearch_total_results
+	opensearch_start_index
+	opensearch_items_per_page
+/] => ( isa => 'Int' , is => 'ro' );
+
 has '_feed' => (
 	isa  => 'HashRef'
 	, is => 'ro'
@@ -93,6 +99,10 @@ sub BUILDARGS {
 			, generator_content => $feed->{generator}{'$t'}
 			, generator_uri     => $feed->{generator}{uri}
 			, generator_version => $feed->{generator}{version}
+	
+			, opensearch_total_results  => $feed->{'openSearch$totalResults'}{'$t'}
+				,	opensearch_start_index    => $feed->{'openSearch$startIndex'}{'$t'}
+				,	opensearch_items_per_page => $feed->{'openSearch$itemsPerPage'}{'$t'}
 
 		}
 	
