@@ -39,6 +39,8 @@ has 'uri' => (
 			else {
 				next;
 			}
+
+			next if substr( $attr->name, 0, 1 ) eq '_';
 			
 			my $k = $attr->has_documentation ? $attr->documentation : $attr->name;
 

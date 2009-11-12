@@ -11,16 +11,17 @@ extends 'GoogleAPI::YouTube::Query';
 
 with 'GoogleAPI::YouTube::Query::Roles::Standard';
 
-has 'username' => (
+has '_username' => (
 	isa  => 'Str'
 	, is => 'ro'
-	, default => 'default'
+	, init_arg => 'user_name'
+	, default  => 'default'
 );
 
 sub _build_uri {
 	my $self = shift;
 	URI->new (
-		sprintf ( "http://gdata.youtube.com/feeds/api/users/%s/uploads", $self->username )
+		sprintf ( "http://gdata.youtube.com/feeds/api/users/%s/uploads", $self->_username )
 	);
 }
 
@@ -34,7 +35,10 @@ GoogleAPI::YouTube::Query::Feeds::User
 
 =head1 SYNOPSIS
 
-GoogleAPI::YouTube::Query::Feeds::User->new({ user => 'EvanCarroll' })->uri;
+	my $query = GoogleAPI::YouTube::Query::Feeds::User->new({ user => 'EvanCarroll' });
+	$query->uri;
+	$query->_username
+
 
 =head1 DESCRIPTION
 
@@ -48,7 +52,7 @@ This class also composes in the L<GoogleAPI::YouTube::Query::Roles::Standard>, a
 
 =item
 
-username - reads from the authorization token if not supplied
+username - reads from the authorization token if not supplied, this is not a query param so you can read from it after instantiation with L<$query-E<gt>_username>
 
 =back
 
