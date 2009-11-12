@@ -21,6 +21,9 @@ has '_ua' => (
 		$value->add_handler( 'request_preprepare' => sub {
 			my ( $request, $ua, $h ) = @_;
 
+			## Look, no one wants to deal with XML... rly dudes.
+			$request->push_header( 'Accept' => 'application/json,text/plain;q=0.9' );
+
 			$request->push_header( 'X-GData-Client' => 'Perl GoogleAPI v1' );
 
 			$request->push_header( 'X-GData-Key' => "key=".$self->devkey )
