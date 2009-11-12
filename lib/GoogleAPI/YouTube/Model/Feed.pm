@@ -88,7 +88,6 @@ sub BUILDARGS {
 		my $json = JSON::from_json( $resp->content );
 		
 		my $feed = $json->{feed};
-		use XXX; YYY $feed;
 
 		return {
 
@@ -108,8 +107,8 @@ sub BUILDARGS {
 			, opensearch_start_index    => $feed->{'openSearch$startIndex'}{'$t'}
 			, opensearch_items_per_page => $feed->{'openSearch$itemsPerPage'}{'$t'}
 			
-			, link_next     => ( map URI->new($_->{href}), grep $_->{rel} eq 'next', @{$feed->{'link'}} )
-			, link_previous => ( map URI->new($_->{href}), grep $_->{rel} eq 'previous', @{$feed->{'link'}} )
+			, link_next     => @{[map URI->new($_->{href}), grep $_->{rel} eq 'next', @{$feed->{'link'}}]}[0] // undef
+			, link_previous => @{[map URI->new($_->{href}), grep $_->{rel} eq 'previous', @{$feed->{'link'}}]}[0] // undef
 
 		};
 	
